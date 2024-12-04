@@ -1,0 +1,28 @@
+{
+    "name": "abacatepay/php-sdk",
+    "description": "An AbacatePay SDK for PHP",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "AbacatePay\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Julimar Junior",
+            "email": "julimargomesjr@hotmail.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^7.9"
+    },
+    "require-dev": {
+        "pestphp/pest": "^3.6",
+        "vlucas/phpdotenv": "^5.6"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}
