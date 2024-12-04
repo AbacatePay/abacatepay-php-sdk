@@ -10,17 +10,21 @@ composer require abacatepay/php-sdk
 
 ### Billing
 
-#### List billings
+#### Start client
 
 ```php
 $billingClient = new \AbacatePay\Client\BillingClient();
+```
+
+#### List billings
+
+```php
 $billingClient->list();
 ```
 
 #### Create a billing
 
 ```php
-$billingClient = new \AbacatePay\Client\BillingClient();
 $billingClient->create(new \AbacatePay\Resources\Billing([
     'frequency' => \AbacatePay\Enums\Billing\Frequencies::ONE_TIME,
     'methods' => [ \AbacatePay\Enums\Billing\Methods::PIX ],
@@ -39,3 +43,7 @@ $billingClient->create(new \AbacatePay\Resources\Billing([
     ])
 ]));
 ```
+
+## 📚 Documentation
+
+(https://abacatepay.readme.io/reference)[https://abacatepay.readme.io/reference]
