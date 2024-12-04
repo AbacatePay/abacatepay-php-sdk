@@ -46,4 +46,4 @@ $billingClient->create(new \AbacatePay\Resources\Billing([
 
 ## 📚 Documentation
 
-(https://abacatepay.readme.io/reference)[https://abacatepay.readme.io/reference]
+[https://abacatepay.readme.io/reference](https://abacatepay.readme.io/reference)
