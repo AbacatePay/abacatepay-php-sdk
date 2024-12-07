@@ -21,30 +21,35 @@ class BillingClient extends Client
 
     public function create(Billing $data): Billing
     {
-        $hasCustomerId = isset($data->customer->id);
+        $requestData = [
+            'frequency' => $data->frequency,
+            'methods' => $data->methods,
+            'products' => $data->products,
+            'returnUrl' => $data->metadata->return_url,
+            'completionUrl' => $data->metadata->completion_url,
+            'products' => array_map(fn($product) => [
+                'externalId' => $product->external_id,
+                'name' => $product->name,
+                'description' => $product->description,
+                'quantity' => $product->quantity,
+                'price' => $product->price
+            ], $data->products),
+        ];
+
+        if (!isset($data->customer->id)) {
+            $requestData['customer'] = [
+                'name' => $data->customer->metadata->name,
+                'email' => $data->customer->metadata->email,
+                'cellphone' => $data->customer->metadata->cellphone,
+                'taxId' => $data->customer->metadata->tax_id
+            ];
+        } else {
+            $requestData['customerId'] = $data->customer->id;
+        }
+
 
         $response = $this->request("POST", "create", [
-            'json' => [
-                'frequency' => $data->frequency,
-                'methods' => $data->methods,
-                'products' => $data->products,
-                'returnUrl' => $data->metadata->return_url,
-                'completionUrl' => $data->metadata->completion_url,
-                'products' => array_map(fn($product) => [
-                    'externalId' => $product->external_id,
-                    'name' => $product->name,
-                    'description' => $product->description,
-                    'quantity' => $product->quantity,
-                    'price' => $product->price
-                ], $data->products),
-                'customerId' => $hasCustomerId ? $data->customer->id : null,
-                'customer' => !$hasCustomerId ? [
-                    'name' => $data->customer->name,
-                    'email' => $data->customer->email,
-                    'cellphone' => $data->customer->cellphone,
-                    'taxId' => $data->customer->tax_id
-                ] : null
-            ]
+            'json' => $requestData
         ]);
 
         return new Billing($response);

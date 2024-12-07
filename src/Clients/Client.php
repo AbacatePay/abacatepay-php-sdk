@@ -34,7 +34,7 @@ class Client
 
             if ($e->hasResponse()) {
                 $errorResponse = json_decode($e->getResponse()->getBody());
-                $errorMessage = $errorResponse->error;
+                $errorMessage = $errorResponse->message ?? $errorResponse->error;
             }
 
             throw new Exception("Request error: " . $errorMessage ?? $e->getMessage(), $e->getCode());

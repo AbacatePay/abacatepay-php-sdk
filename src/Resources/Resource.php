@@ -50,7 +50,7 @@ class Resource
         }
     }
 
-    function __camelToSnakeCase(string $input): string
+    protected function __camelToSnakeCase(string $input): string
     {
         $snake = preg_replace('/([a-z0-9])([A-Z])/', '$1_$2', $input);
         $snake = preg_replace('/([A-Z])([A-Z][a-z])/', '$1_$2', $snake);

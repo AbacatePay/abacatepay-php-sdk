@@ -6,6 +6,12 @@
 composer require abacatepay/php-sdk
 ```
 
+## 🔧 Configuration
+
+```php
+\AbacatePay\Clients\Client::setToken($_ENV["ABACATEPAY_TOKEN"]);
+```
+
 ## 🌟 Resources
 
 ### Billing
@@ -41,11 +47,13 @@ $billingClient->create(new \AbacatePay\Resources\Billing([
         'return_url' => 'https://www.abacatepay.com',
         'completion_url' => 'https://www.abacatepay.com'
     ]),
-    'customer' => new Customer([
-        'name' => 'Abacate Lover',
-        'cellphone' => '01912341234',
-        'email' => 'lover@abacate.com',
-        'tax_id' => '13827826837'
+   'customer' => new \AbacatePay\Resources\Customer([
+        'metadata' => new \AbacatePay\Resources\Customer\Metadata([
+            'name' => 'Abacate Lover',
+            'cellphone' => '01912341234',
+            'email' => 'lover@abacate.com',
+            'tax_id' => '13827826837'
+        ])
     ])
 ]));
 ```
@@ -53,9 +61,36 @@ $billingClient->create(new \AbacatePay\Resources\Billing([
 It is possible to use a previously created customer by only informing the id:
 
 ```php
-'customer' => new Customer([
+'customer' => new \AbacatePay\Resources\Customer([
     'id' => 'cust_DEbpqcN...',
 ])
+```
+
+### Customer
+
+#### Start client
+
+```php
+$customerClient = new \AbacatePay\Client\CustomerClient();
+```
+
+#### List customers
+
+```php
+$customerClient->list();
+```
+
+#### Create a billing
+
+```php
+$customerClient->create(new \AbacatePay\Resources\Customer([
+    'metadata' => new \AbacatePay\Resources\Customer\Metadata([
+        'name' => 'Abacate Lover',
+        'cellphone' => '01912341234',
+        'email' => 'lover@abacate.com',
+        'tax_id' => '13827826837'
+    ])
+]));
 ```
 
 ## 📚 Documentation
