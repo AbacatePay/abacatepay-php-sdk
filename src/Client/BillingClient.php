@@ -16,11 +16,13 @@ class BillingClient extends Client
     public function list(): array
     {
         $response = $this->request("GET", "list");
-        return array_map(fn($data) => new Billing($data), $response['billings']);
+        return array_map(fn($data) => new Billing($data), $response);
     }
 
-    public function create(Billing $data): Billing
+    public function create(Billing $data)
     {
+        $hasCustomerId = isset($data->customer->id);
+
         $response = $this->request("POST", "create", [
             'json' => [
                 'frequency' => $data->frequency,
@@ -34,10 +36,17 @@ class BillingClient extends Client
                     'description' => $product->description,
                     'quantity' => $product->quantity,
                     'price' => $product->price
-                ], $data->products)
+                ], $data->products),
+                'customerId' => $hasCustomerId ? $data->customer->id : null,
+                'customer' => !$hasCustomerId ? [
+                    'name' => $data->customer->name,
+                    'email' => $data->customer->email,
+                    'cellphone' => $data->customer->cellphone,
+                    'taxId' => $data->customer->tax_id
+                ] : null
             ]
         ]);
 
-        return new Billing($response['billing']);
+        return new Billing($response);
     }
 }

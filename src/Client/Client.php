@@ -26,13 +26,13 @@ class Client
     public function request(string $method, string $uri, array $options = []): array
     {
         try {
-            return json_decode($this->client->request($method, $uri, $options)->getBody(), true);
+            return json_decode($this->client->request($method, $uri, $options)->getBody(), true)["data"];
         } catch (RequestException $e) {
             $errorMessage = null;
 
             if ($e->hasResponse()) {
                 $errorResponse = json_decode($e->getResponse()->getBody());
-                $errorMessage = $errorResponse->message;
+                $errorMessage = $errorResponse->error;
             }
 
             throw new Exception("Request error: " . $errorMessage ?? $e->getMessage(), $e->getCode());

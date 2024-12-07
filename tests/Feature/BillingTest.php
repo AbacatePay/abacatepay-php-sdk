@@ -6,10 +6,11 @@ use AbacatePay\Enums\Billing\Methods;
 use AbacatePay\Resources\Billing;
 use AbacatePay\Resources\Billing\Metadata;
 use AbacatePay\Resources\Billing\Product;
+use AbacatePay\Resources\Customer;
 
 // test('Get list of billings', function () {
 //     $billingClient = new BillingClient();
-//     $billingClient->list();
+//     var_dump($billingClient->list());
 // });
 
 // test('Get list of billings', function () {
@@ -28,6 +29,12 @@ use AbacatePay\Resources\Billing\Product;
 //         'metadata' => new Metadata([
 //             'return_url' => 'https://www.abacatepay.com',
 //             'completion_url' => 'https://www.abacatepay.com'
+//         ]),
+//         'customer' => new Customer([
+//             'name' => 'Abacate Lover',
+//             'cellphone' => '01912341234',
+//             'email' => 'lover@abacate.com',
+//             'tax_id' => '13827826837'
 //         ])
 //     ]);
     

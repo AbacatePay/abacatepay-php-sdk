@@ -5,8 +5,6 @@ namespace AbacatePay\Resources;
 use AbacatePay\Enums\Billing\Frequencies;
 use AbacatePay\Enums\Billing\Methods;
 use AbacatePay\Enums\Billing\Statuses;
-use AbacatePay\Enums\BillingFrequencies;
-use AbacatePay\Enums\BillingStatuses;
 use AbacatePay\Resources\Billing\Metadata;
 use AbacatePay\Resources\Billing\Product;
 use DateTime;
@@ -23,6 +21,7 @@ class Billing extends Resource
     public ?Metadata $metadata;
     public ?Frequencies $frequency;
     public ?Statuses $status;
+    public ?Customer $customer;
     public ?DateTime $next_billing;
     public ?DateTime $created_at;
     public ?DateTime $updated_at;
@@ -62,6 +61,8 @@ class Billing extends Resource
                 return $this->__initializeEnum(Frequencies::class, $value);
             case 'metadata':
                 return $this->__initializeResource(Metadata::class, $value);
+            case 'customer':
+                return $this->__initializeResource(Customer::class, $value);
             case 'products':
                 return array_map(fn($product) => $this->__initializeResource(Product::class, $product), $value);
             case 'methods':
