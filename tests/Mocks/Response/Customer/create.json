@@ -1,0 +1,17 @@
+{
+    "error": null,
+    "data": {
+        "accountId": "acco_ERdzBxUMReqQnKT4z4DrLKsf",
+        "storeId": "store_GkprtuCk4D0qtncgMZQ5ZPh4",
+        "devMode": true,
+        "metadata": {
+            "name": "Abacate Lover",
+            "cellphone": "01912341234",
+            "taxId": "13827826837",
+            "email": "lover@abacate.com"
+        },
+        "createdAt": "2024-12-07T22:47:04.798Z",
+        "updatedAt": "2024-12-07T22:47:04.798Z",
+        "id": "cust_45ngpDrEWUqDA1r4NAaRFjKS"
+    }
+}

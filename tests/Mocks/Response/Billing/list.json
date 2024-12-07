@@ -1,0 +1,71 @@
+{
+    "error": null,
+    "data": [
+        {
+            "metadata": {
+                "fee": 100,
+                "returnUrl": "https://www.abacatepay.com",
+                "completionUrl": "https://www.abacatepay.com"
+            },
+            "accountId": "acco_ERdzBxUMReqQnKT4z4DrLKsf",
+            "storeId": "store_GkprtuCk4D0qtncgMZQ5ZPh4",
+            "products": [
+                {
+                    "id": "prod_r234yHaDArQPWM3PHmzZKCyD",
+                    "externalId": "abc_123",
+                    "quantity": 1
+                }
+            ],
+            "amount": 100,
+            "status": "PAID",
+            "devMode": true,
+            "methods": ["PIX"],
+            "frequency": "ONE_TIME",
+            "createdAt": "2024-12-07T17:29:48.839Z",
+            "updatedAt": "2024-12-07T17:29:48.839Z",
+            "url": "https://abacatepay.com/pay/bill_j2qugKAGHRPHLQGGCumAq0ZJ",
+            "customer": {
+                "metadata": {
+                    "name": "Abacate Lover",
+                    "cellphone": "01912341234",
+                    "taxId": "13827826837",
+                    "email": "lover@abacate.com"
+                }
+            },
+            "id": "bill_j2qugKAGHRPHLQGGCumAq0ZJ"
+        },
+        {
+            "metadata": {
+                "fee": 100,
+                "returnUrl": "https://www.abacatepay.com",
+                "completionUrl": "https://www.abacatepay.com"
+            },
+            "accountId": "acco_ERdzBxUMReqQnKT4z4DrLKsf",
+            "storeId": "store_GkprtuCk4D0qtncgMZQ5ZPh4",
+            "products": [
+                {
+                    "id": "prod_r234yHaDArQPWM3PHmzZKCyD",
+                    "externalId": "abc_123",
+                    "quantity": 1
+                }
+            ],
+            "amount": 100,
+            "status": "PENDING",
+            "devMode": true,
+            "methods": ["PIX"],
+            "frequency": "ONE_TIME",
+            "createdAt": "2024-12-07T17:55:31.100Z",
+            "updatedAt": "2024-12-07T17:55:31.100Z",
+            "url": "https://abacatepay.com/pay/bill_TBcR6upqLMXwyhGypq2bdgA1",
+            "customer": {
+                "metadata": {
+                    "name": "Abacate Lover",
+                    "cellphone": "01912341234",
+                    "taxId": "13827826837",
+                    "email": "lover@abacate.com"
+                }
+            },
+            "id": "bill_TBcR6upqLMXwyhGypq2bdgA1"
+        }
+    ]
+}

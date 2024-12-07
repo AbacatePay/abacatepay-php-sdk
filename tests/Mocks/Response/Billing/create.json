@@ -1,0 +1,36 @@
+{
+    "error": null,
+    "data": {
+        "accountId": "acco_ERdzBxUMReqQnKT4z4DrLKsf",
+        "storeId": "store_GkprtuCk4D0qtncgMZQ5ZPh4",
+        "products": [
+            {
+                "id": "prod_r234yHaDArQPWM3PHmzZKCyD",
+                "externalId": "abc_123",
+                "quantity": 1
+            }
+        ],
+        "amount": 100,
+        "status": "PENDING",
+        "devMode": true,
+        "methods": ["PIX"],
+        "frequency": "ONE_TIME",
+        "metadata": {
+            "fee": 100,
+            "returnUrl": "https://www.abacatepay.com",
+            "completionUrl": "https://www.abacatepay.com"
+        },
+        "createdAt": "2024-12-07T22:25:54.738Z",
+        "updatedAt": "2024-12-07T22:25:54.738Z",
+        "url": "https://abacatepay.com/pay/bill_YcxMCe4Fq0wJEcnP5gLPq0Yc",
+        "customer": {
+            "metadata": {
+                "name": "Abacate Lover",
+                "cellphone": "01912341234",
+                "taxId": "13827826837",
+                "email": "lover@abacate.com"
+            }
+        },
+        "id": "bill_YcxMCe4Fq0wJEcnP5gLPq0Yc"
+    }
+}

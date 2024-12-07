@@ -10,8 +10,11 @@ use AbacatePay\Resources\Billing\Product;
 use AbacatePay\Resources\Customer;
 
 test('Get list of billings', function () {
-    $billingClient = new BillingClient();
-    $billingClient->list();
+    $fakeClient = getListBillingsResponseClient();
+    
+    $billingClient = new BillingClient($fakeClient);
+
+    expect($billingClient->list())->toBeArray()->toContainOnlyInstancesOf(Billing::class);
 });
 
 test('Create a billing', function () {
@@ -21,8 +24,8 @@ test('Create a billing', function () {
         'products' => [
             new Product([
                 'external_id' => 'abc_123',
-                'name' => 'Produto A',
-                'description' => 'Descrição do produto A',
+                'name' => 'Abacate',
+                'description' => 'Abacate maduro',
                 'quantity' => 1,
                 'price' => 100
             ])
@@ -41,6 +44,9 @@ test('Create a billing', function () {
         ])
     ]);
     
-    $billingClient = new BillingClient();
-    $billingClient->create($billing);
+    $fakeClient = getCreateBillingResponseClient();
+
+    $billingClient = new BillingClient($fakeClient);
+
+    expect($billingClient->create($billing))->toBeInstanceOf(Billing::class);
 });

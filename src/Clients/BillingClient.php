@@ -3,14 +3,15 @@
 namespace AbacatePay\Clients;
 
 use AbacatePay\Resources\Billing;
+use GuzzleHttp\Client as GuzzleHttpClient;
 
 class BillingClient extends Client
 {
     const URI = 'billing';
 
-    public function __construct()
+    public function __construct(GuzzleHttpClient $client = null)
     {
-        parent::__construct(self::URI);
+        parent::__construct(self::URI, $client);
     }
     
     public function list(): array
@@ -46,7 +47,6 @@ class BillingClient extends Client
         } else {
             $requestData['customerId'] = $data->customer->id;
         }
-
 
         $response = $this->request("POST", "create", [
             'json' => $requestData

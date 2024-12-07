@@ -1,0 +1,23 @@
+{
+    "error": null,
+    "data": [
+        {
+            "id": "cust_DEbpqcNruex6z4jmfYDSzyLf",
+            "metadata": {
+                "name": "Abacate Lover",
+                "cellphone": "01912341234",
+                "taxId": "13827826837",
+                "email": "lover@abacate.com"
+            }
+        },
+        {
+            "id": "cust_bEMgNLBewUr2UtJZL3eySTEY",
+            "metadata": {
+                "name": "Abacate Lover",
+                "cellphone": "01912341234",
+                "taxId": "13827826837",
+                "email": "lover@abacate.com"
+            }
+        }
+    ]
+}
