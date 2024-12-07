@@ -1,6 +1,6 @@
 <?php
 
-namespace AbacatePay\Client;
+namespace AbacatePay\Clients;
 
 use AbacatePay\Resources\Billing;
 
@@ -19,7 +19,7 @@ class BillingClient extends Client
         return array_map(fn($data) => new Billing($data), $response);
     }
 
-    public function create(Billing $data)
+    public function create(Billing $data): Billing
     {
         $hasCustomerId = isset($data->customer->id);
 

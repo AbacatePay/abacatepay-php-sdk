@@ -1,6 +1,6 @@
 <?php
 
-namespace AbacatePay\Client;
+namespace AbacatePay\Clients;
 
 use Exception;
 use GuzzleHttp\Client as GuzzleHttpClient;
@@ -9,6 +9,8 @@ use GuzzleHttp\Exception\RequestException;
 class Client
 {
     private GuzzleHttpClient $client;
+    
+    protected static $token;
 
     const BASE_URI = 'https://api.abacatepay.com/v1';
 
@@ -18,7 +20,7 @@ class Client
             'base_uri' => self::BASE_URI . "/" . $uri . "/",
             'headers' => [
                 'Content-Type' => 'application/json',
-                'Authorization' => 'Bearer ' . $_ENV['ABACATEPAY_TOKEN']
+                'Authorization' => 'Bearer ' . self::$token
             ]
         ]);
     }
@@ -37,5 +39,10 @@ class Client
 
             throw new Exception("Request error: " . $errorMessage ?? $e->getMessage(), $e->getCode());
         }
+    }
+
+    public static function setToken(string $token): void
+    {
+        self::$token = $token;
     }
 }

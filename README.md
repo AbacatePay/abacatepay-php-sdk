@@ -40,8 +40,22 @@ $billingClient->create(new \AbacatePay\Resources\Billing([
     'metadata' => new \AbacatePay\Resources\Billing\Metadata([
         'return_url' => 'https://www.abacatepay.com',
         'completion_url' => 'https://www.abacatepay.com'
+    ]),
+    'customer' => new Customer([
+        'name' => 'Abacate Lover',
+        'cellphone' => '01912341234',
+        'email' => 'lover@abacate.com',
+        'tax_id' => '13827826837'
     ])
 ]));
+```
+
+It is possible to use a previously created customer by only informing the id:
+
+```php
+'customer' => new Customer([
+    'id' => 'cust_DEbpqcN...',
+])
 ```
 
 ## 📚 Documentation
