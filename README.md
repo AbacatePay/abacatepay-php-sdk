@@ -1,4 +1,14 @@
-# AbacatePay SDK for PHP
+# AbacatePay SDK 🥑
+
+## 📦 Overview
+
+AbacatePay is a lightweight PHP SDK for seamless payment processing
+
+## 🔧 Requirements
+
+- PHP 8.2+
+- Composer
+
 
 ## 💻 Installation
 
@@ -18,7 +28,7 @@ Set your API token before making requests:
 
 ## 🌟 Resources
 
-### Billing
+### Billing Management
 
 #### Initialize the Billing Client
 
@@ -74,7 +84,7 @@ Alternatively, you can use a previously created customer by specifying their ID:
 ])
 ```
 
-### Customer
+### Customer Management
 
 #### Initialize the Customer Client
 
@@ -90,7 +100,7 @@ Retrieve a list of all customers:
 $customerClient->list();
 ```
 
-#### Create a billing
+#### Create a customer
 
 To create a customer, use the following code:
 
