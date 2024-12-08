@@ -9,15 +9,31 @@ use AbacatePay\Resources\Customer\Metadata as CustomerMetadata;
 use AbacatePay\Resources\Billing\Product;
 use AbacatePay\Resources\Customer;
 
+/**
+ * Test case: Retrieve a list of billings.
+ *
+ * This test verifies that the `list` method of `BillingClient` correctly retrieves
+ * an array of `Billing` instances.
+ */
 test('Get list of billings', function () {
+    // Mocked client with a fake response for listing billings
     $fakeClient = getListBillingsResponseClient();
     
+    // Create a BillingClient instance using the mocked client
     $billingClient = new BillingClient($fakeClient);
 
+    // Assert that the response is an array containing only Billing instances
     expect($billingClient->list())->toBeArray()->toContainOnlyInstancesOf(Billing::class);
 });
 
+/**
+ * Test case: Create a new billing.
+ *
+ * This test verifies that the `create` method of `BillingClient` successfully creates
+ * a `Billing` instance when valid data is provided.
+ */
 test('Create a billing', function () {
+    // Create a new Billing object with required data
     $billing = new Billing([
         'frequency' => Frequencies::ONE_TIME,
         'methods' => [ Methods::PIX ],
@@ -44,9 +60,12 @@ test('Create a billing', function () {
         ])
     ]);
     
+    // Mocked client with a fake response for creating a billing
     $fakeClient = getCreateBillingResponseClient();
 
+    // Create a BillingClient instance using the mocked client
     $billingClient = new BillingClient($fakeClient);
 
+    // Assert that the `create` method returns a Billing instance
     expect($billingClient->create($billing))->toBeInstanceOf(Billing::class);
 });

@@ -2,11 +2,15 @@
 
 ## 💻 Installation
 
+To install the SDK, use Composer:
+
 ```
 composer require abacatepay/php-sdk
 ```
 
 ## 🔧 Configuration
+
+Set your API token before making requests:
 
 ```php
 \AbacatePay\Clients\Client::setToken($_ENV["ABACATEPAY_TOKEN"]);
@@ -16,19 +20,23 @@ composer require abacatepay/php-sdk
 
 ### Billing
 
-#### Start client
+#### Initialize the Billing Client
 
 ```php
-$billingClient = new \AbacatePay\Client\BillingClient();
+$billingClient = new \AbacatePay\Clients\BillingClient();
 ```
 
 #### List billings
+
+Retrieve a list of all billings:
 
 ```php
 $billingClient->list();
 ```
 
 #### Create a billing
+
+To create a billing, use the following code:
 
 ```php
 $billingClient->create(new \AbacatePay\Resources\Billing([
@@ -40,7 +48,7 @@ $billingClient->create(new \AbacatePay\Resources\Billing([
             'name' => 'Produto A',
             'description' => 'Descrição do produto A',
             'quantity' => 1,
-            'price' => 100
+            'price' => 100 // Price in cents
         ])
     ],
     'metadata' => new \AbacatePay\Resources\Billing\Metadata([
@@ -58,7 +66,7 @@ $billingClient->create(new \AbacatePay\Resources\Billing([
 ]));
 ```
 
-It is possible to use a previously created customer by only informing the id:
+Alternatively, you can use a previously created customer by specifying their ID:
 
 ```php
 'customer' => new \AbacatePay\Resources\Customer([
@@ -68,19 +76,23 @@ It is possible to use a previously created customer by only informing the id:
 
 ### Customer
 
-#### Start client
+#### Initialize the Customer Client
 
 ```php
-$customerClient = new \AbacatePay\Client\CustomerClient();
+$customerClient = new \AbacatePay\Clients\CustomerClient();
 ```
 
 #### List customers
+
+Retrieve a list of all customers:
 
 ```php
 $customerClient->list();
 ```
 
 #### Create a billing
+
+To create a customer, use the following code:
 
 ```php
 $customerClient->create(new \AbacatePay\Resources\Customer([
@@ -95,4 +107,35 @@ $customerClient->create(new \AbacatePay\Resources\Customer([
 
 ## 📚 Documentation
 
+For detailed information about the API and SDK, refer to the official documentation:
 [https://abacatepay.readme.io/reference](https://abacatepay.readme.io/reference)
+
+## 🤝 Contribution
+
+Contributions are welcome! If you wish to contribute:
+
+1. Fork the repository.
+
+2. Create a new branch for your feature or fix:
+
+```bash
+git checkout -b feature/your-feature-name
+```
+
+3. Make your changes and commit them:
+
+```bash
+git commit -m "Add your detailed commit message here"
+```
+
+4. Push to your branch:
+
+```bash
+git push origin feature/your-feature-name
+```
+
+5. Open a pull request with a clear description of your changes.
+
+Please ensure your code adheres to the project's coding standards and includes appropriate tests.
+
+### Happy coding! 🚀
