@@ -46,9 +46,6 @@ Initialize the Billing Client
 
 ```php
 use AbacatePay\Clients\BillingClient;
-use AbacatePay\Resources\Billing;
-use AbacatePay\Enums\Billing\Frequencies;
-use AbacatePay\Enums\Billing\Methods;
 
 $billingClient = new BillingClient();
 ```
@@ -62,11 +59,18 @@ $billings = $billingClient->list();
 ### Create a New Billing
 
 ```php
+use AbacatePay\Resources\Billing;
+use AbacatePay\Resources\Billing\Product;
+use AbacatePay\Resources\Billing\Metadata;
+use AbacatePay\Enums\Billing\Methods;
+use AbacatePay\Enums\Billing\Frequencies;
+use AbacatePay\Resources\Customer;
+
 $billing = $billingClient->create(new Billing([
     'frequency' => Frequencies::ONE_TIME,
     'methods' => [Methods::PIX],
     'products' => [
-        new \AbacatePay\Resources\Billing\Product([
+        new Product([
             'external_id' => 'abc_123',
             'name' => 'Product A',
             'description' => 'Description of product A',
@@ -74,12 +78,12 @@ $billing = $billingClient->create(new Billing([
             'price' => 100 // Price in cents
         ])
     ],
-    'metadata' => new \AbacatePay\Resources\Billing\Metadata([
+    'metadata' => new Metadata([
         'return_url' => 'https://www.abacatepay.com',
         'completion_url' => 'https://www.abacatepay.com'
     ]),
-    'customer' => new \AbacatePay\Resources\Customer([
-        'metadata' => new \AbacatePay\Resources\Customer\Metadata([
+    'customer' => new Customer([
+        'metadata' => new Metadata([
             'name' => 'John Doe',
             'cellphone' => '01912341234',
             'email' => 'john@example.com',
@@ -109,8 +113,11 @@ $customers = $customerClient->list();
 ### Create a New Customer
 
 ```php
+use AbacatePay\Resources\Customer;
+use AbacatePay\Resources\Billing\Metadata;
+
 $customer = $customerClient->create(new Customer([
-    'metadata' => new \AbacatePay\Resources\Customer\Metadata([
+    'metadata' => new Metadata([
         'name' => 'John Doe',
         'cellphone' => '01912341234',
         'email' => 'john@example.com',
@@ -130,9 +137,11 @@ $customer = $customerClient->create(new Customer([
 ## 🔍 Error Handling
 
 ```php
+use AbacatePay\Exceptions\ApiException;
+
 try {
     $billing = $billingClient->create($billingData);
-} catch (\AbacatePay\Exceptions\ApiException $e) {
+} catch (ApiException $e) {
     // Handle API-specific errors
     echo $e->getMessage();
 } catch (\Exception $e) {
