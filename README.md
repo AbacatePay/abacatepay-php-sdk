@@ -21,7 +21,7 @@ composer require abacatepay/php-sdk
 
 First, initialize the SDK with your API token:
 
-```bash
+```php
 use AbacatePay\Clients\Client;
 
 Client::setToken($_ENV["ABACATEPAY_TOKEN"]);
@@ -44,7 +44,7 @@ Client::setToken($_ENV["ABACATEPAY_TOKEN"]);
 
 Initialize the Billing Client
 
-```bash
+```php
 use AbacatePay\Clients\BillingClient;
 use AbacatePay\Resources\Billing;
 use AbacatePay\Enums\Billing\Frequencies;
@@ -55,13 +55,13 @@ $billingClient = new BillingClient();
 
 ### List All Billings
 
-```bash
+```php
 $billings = $billingClient->list();
 ```
 
 ### Create a New Billing
 
-```bash
+```php
 $billing = $billingClient->create(new Billing([
     'frequency' => Frequencies::ONE_TIME,
     'methods' => [Methods::PIX],
@@ -93,7 +93,7 @@ $billing = $billingClient->create(new Billing([
 
 ### Initialize the Customer Client
 
-```bash
+```php
 use AbacatePay\Clients\CustomerClient;
 use AbacatePay\Resources\Customer;
 
@@ -102,13 +102,13 @@ $customerClient = new CustomerClient();
 
 ### List All Customers
 
-```bash
+```php
 $customers = $customerClient->list();
 ```
 
 ### Create a New Customer
 
-```bash
+```php
 $customer = $customerClient->create(new Customer([
     'metadata' => new \AbacatePay\Resources\Customer\Metadata([
         'name' => 'John Doe',
@@ -129,7 +129,7 @@ $customer = $customerClient->create(new Customer([
 
 ## 🔍 Error Handling
 
-```bash
+```php
 try {
     $billing = $billingClient->create($billingData);
 } catch (\AbacatePay\Exceptions\ApiException $e) {
