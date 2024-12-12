@@ -4,7 +4,7 @@ A robust PHP SDK for integrating AbacatePay payment solutions into your applicat
 
 ## 📋 Requirements
 
-- PHP 7.4 or higher
+- PHP 8.2 or higher
 - Composer
 - Valid AbacatePay account and API credentials
 - SSL enabled for production environments
@@ -50,21 +50,22 @@ use AbacatePay\Clients\BillingClient;
 $billingClient = new BillingClient();
 ```
 
-### List All Billings
+#### List All Billings
 
 ```php
 $billings = $billingClient->list();
 ```
 
-### Create a New Billing
+#### Create a New Billing
 
 ```php
 use AbacatePay\Resources\Billing;
 use AbacatePay\Resources\Billing\Product;
-use AbacatePay\Resources\Billing\Metadata;
+use AbacatePay\Resources\Billing\Metadata as BillingMetadata;
 use AbacatePay\Enums\Billing\Methods;
 use AbacatePay\Enums\Billing\Frequencies;
 use AbacatePay\Resources\Customer;
+use AbacatePay\Resources\Customer\Metadata as CustomerMetadata;
 
 $billing = $billingClient->create(new Billing([
     'frequency' => Frequencies::ONE_TIME,
@@ -78,12 +79,12 @@ $billing = $billingClient->create(new Billing([
             'price' => 100 // Price in cents
         ])
     ],
-    'metadata' => new Metadata([
+    'metadata' => new BillingMetadata([
         'return_url' => 'https://www.abacatepay.com',
         'completion_url' => 'https://www.abacatepay.com'
     ]),
     'customer' => new Customer([
-        'metadata' => new Metadata([
+        'metadata' => new CustomerMetadata([
             'name' => 'John Doe',
             'cellphone' => '01912341234',
             'email' => 'john@example.com',
@@ -93,9 +94,19 @@ $billing = $billingClient->create(new Billing([
 ]));
 ```
 
-## Customer Management
+It is also possible to use the ID of an existing customer:
 
-### Initialize the Customer Client
+```php
+// ...
+    'customer' => new Customer([
+        'id' => 'abc_123'
+    ])
+// ...
+```
+
+### Customer Management
+
+Initialize the Customer Client
 
 ```php
 use AbacatePay\Clients\CustomerClient;
@@ -104,17 +115,17 @@ use AbacatePay\Resources\Customer;
 $customerClient = new CustomerClient();
 ```
 
-### List All Customers
+#### List All Customers
 
 ```php
 $customers = $customerClient->list();
 ```
 
-### Create a New Customer
+#### Create a New Customer
 
 ```php
 use AbacatePay\Resources\Customer;
-use AbacatePay\Resources\Billing\Metadata;
+use AbacatePay\Resources\Customer\Metadata;
 
 $customer = $customerClient->create(new Customer([
     'metadata' => new Metadata([
