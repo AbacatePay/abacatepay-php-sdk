@@ -4,10 +4,10 @@ A robust PHP SDK for integrating AbacatePay payment solutions into your applicat
 
 ## 📋 Requirements
 
-- PHP 8.2 or higher
-- Composer
-- Valid AbacatePay account and API credentials
-- SSL enabled for production environments
+-   PHP 7.2.5 or higher
+-   Composer
+-   Valid AbacatePay account and API credentials
+-   SSL enabled for production environments
 
 ## 💻 Installation
 
@@ -27,16 +27,16 @@ use AbacatePay\Clients\Client;
 Client::setToken($_ENV["ABACATEPAY_TOKEN"]);
 ```
 
->⚠️ Never commit your API tokens to version control. Use environment variables instead.
+> ⚠️ Never commit your API tokens to version control. Use environment variables instead.
 
 ## 🌟 Features
 
-- Simple billing management
-- Customer management
-- Multiple payment methods support
-- Webhook handling
-- Secure payment processing
-- Error handling and logging
+-   Simple billing management
+-   Customer management
+-   Multiple payment methods support
+-   Webhook handling
+-   Secure payment processing
+-   Error handling and logging
 
 ## 📘 Usage Examples
 
@@ -139,11 +139,11 @@ $customer = $customerClient->create(new Customer([
 
 ## ⚡ Quick Tips
 
-- Use environment variables for API tokens
-- Enable error reporting in development
-- Always validate customer input
-- Handle exceptions appropriately
-- Keep the SDK updated
+-   Use environment variables for API tokens
+-   Enable error reporting in development
+-   Always validate customer input
+-   Handle exceptions appropriately
+-   Keep the SDK updated
 
 ## 🔍 Error Handling
 
@@ -165,28 +165,22 @@ try {
 
 For detailed API documentation and integration guides:
 
-- API Reference
-- Integration Guide
-- API Status
+-   API Reference
+-   Integration Guide
+-   API Status
 
 ## 🛠️ Development
+
+### Installing packages
+
+```
+composer install --dev
+```
 
 ### Running Tests
 
 ```bash
 composer test
-```
-
-### Code Style
-
-```bash
-composer format
-```
-
-### Static Analysis
-
-```bash
-composer analyze
 ```
 
 ## 🤝 Contributing
@@ -209,8 +203,8 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## 💬 Support
 
-- For SDK issues, open an issue
-- For API questions, contact ajuda@abacatepay.com
-- For urgent issues, contact our support team
+-   For SDK issues, open an issue
+-   For API questions, contact ajuda@abacatepay.com
+-   For urgent issues, contact our support team
 
-Made with ❤️ by AbacatePay Team
+Made with ❤️ by AbacatePay Community
