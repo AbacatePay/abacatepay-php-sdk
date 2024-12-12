@@ -1,141 +1,205 @@
 # AbacatePay SDK for PHP
 
+A robust PHP SDK for integrating AbacatePay payment solutions into your applications.
+
+## 📋 Requirements
+
+- PHP 7.4 or higher
+- Composer
+- Valid AbacatePay account and API credentials
+- SSL enabled for production environments
+
 ## 💻 Installation
 
-To install the SDK, use Composer:
+Install the SDK via Composer:
 
-```
+```bash
 composer require abacatepay/php-sdk
 ```
 
 ## 🔧 Configuration
 
-Set your API token before making requests:
+First, initialize the SDK with your API token:
 
 ```php
-\AbacatePay\Clients\Client::setToken($_ENV["ABACATEPAY_TOKEN"]);
+use AbacatePay\Clients\Client;
+
+Client::setToken($_ENV["ABACATEPAY_TOKEN"]);
 ```
 
-## 🌟 Resources
+>⚠️ Never commit your API tokens to version control. Use environment variables instead.
 
-### Billing
+## 🌟 Features
 
-#### Initialize the Billing Client
+- Simple billing management
+- Customer management
+- Multiple payment methods support
+- Webhook handling
+- Secure payment processing
+- Error handling and logging
+
+## 📘 Usage Examples
+
+### Billing Management
+
+Initialize the Billing Client
 
 ```php
-$billingClient = new \AbacatePay\Clients\BillingClient();
+use AbacatePay\Clients\BillingClient;
+
+$billingClient = new BillingClient();
 ```
 
-#### List billings
-
-Retrieve a list of all billings:
+### List All Billings
 
 ```php
-$billingClient->list();
+$billings = $billingClient->list();
 ```
 
-#### Create a billing
-
-To create a billing, use the following code:
+### Create a New Billing
 
 ```php
-$billingClient->create(new \AbacatePay\Resources\Billing([
-    'frequency' => \AbacatePay\Enums\Billing\Frequencies::ONE_TIME,
-    'methods' => [ \AbacatePay\Enums\Billing\Methods::PIX ],
+use AbacatePay\Resources\Billing;
+use AbacatePay\Resources\Billing\Product;
+use AbacatePay\Resources\Billing\Metadata;
+use AbacatePay\Enums\Billing\Methods;
+use AbacatePay\Enums\Billing\Frequencies;
+use AbacatePay\Resources\Customer;
+
+$billing = $billingClient->create(new Billing([
+    'frequency' => Frequencies::ONE_TIME,
+    'methods' => [Methods::PIX],
     'products' => [
-        new \AbacatePay\Resources\Billing\Product([
+        new Product([
             'external_id' => 'abc_123',
-            'name' => 'Produto A',
-            'description' => 'Descrição do produto A',
+            'name' => 'Product A',
+            'description' => 'Description of product A',
             'quantity' => 1,
             'price' => 100 // Price in cents
         ])
     ],
-    'metadata' => new \AbacatePay\Resources\Billing\Metadata([
+    'metadata' => new Metadata([
         'return_url' => 'https://www.abacatepay.com',
         'completion_url' => 'https://www.abacatepay.com'
     ]),
-   'customer' => new \AbacatePay\Resources\Customer([
-        'metadata' => new \AbacatePay\Resources\Customer\Metadata([
-            'name' => 'Abacate Lover',
+    'customer' => new Customer([
+        'metadata' => new Metadata([
+            'name' => 'John Doe',
             'cellphone' => '01912341234',
-            'email' => 'lover@abacate.com',
+            'email' => 'john@example.com',
             'tax_id' => '13827826837'
         ])
     ])
 ]));
 ```
 
-Alternatively, you can use a previously created customer by specifying their ID:
+## Customer Management
+
+### Initialize the Customer Client
 
 ```php
-'customer' => new \AbacatePay\Resources\Customer([
-    'id' => 'cust_DEbpqcN...',
-])
+use AbacatePay\Clients\CustomerClient;
+use AbacatePay\Resources\Customer;
+
+$customerClient = new CustomerClient();
 ```
 
-### Customer
-
-#### Initialize the Customer Client
+### List All Customers
 
 ```php
-$customerClient = new \AbacatePay\Clients\CustomerClient();
+$customers = $customerClient->list();
 ```
 
-#### List customers
-
-Retrieve a list of all customers:
+### Create a New Customer
 
 ```php
-$customerClient->list();
-```
+use AbacatePay\Resources\Customer;
+use AbacatePay\Resources\Billing\Metadata;
 
-#### Create a billing
-
-To create a customer, use the following code:
-
-```php
-$customerClient->create(new \AbacatePay\Resources\Customer([
-    'metadata' => new \AbacatePay\Resources\Customer\Metadata([
-        'name' => 'Abacate Lover',
+$customer = $customerClient->create(new Customer([
+    'metadata' => new Metadata([
+        'name' => 'John Doe',
         'cellphone' => '01912341234',
-        'email' => 'lover@abacate.com',
+        'email' => 'john@example.com',
         'tax_id' => '13827826837'
     ])
 ]));
 ```
 
+## ⚡ Quick Tips
+
+- Use environment variables for API tokens
+- Enable error reporting in development
+- Always validate customer input
+- Handle exceptions appropriately
+- Keep the SDK updated
+
+## 🔍 Error Handling
+
+```php
+use AbacatePay\Exceptions\ApiException;
+
+try {
+    $billing = $billingClient->create($billingData);
+} catch (ApiException $e) {
+    // Handle API-specific errors
+    echo $e->getMessage();
+} catch (\Exception $e) {
+    // Handle general errors
+    echo $e->getMessage();
+}
+```
+
 ## 📚 Documentation
 
-For detailed information about the API and SDK, refer to the official documentation:
-[https://abacatepay.readme.io/reference](https://abacatepay.readme.io/reference)
+For detailed API documentation and integration guides:
 
-## 🤝 Contribution
+- API Reference
+- Integration Guide
+- API Status
 
-Contributions are welcome! If you wish to contribute:
+## 🛠️ Development
 
-1. Fork the repository.
-
-2. Create a new branch for your feature or fix:
-
-```bash
-git checkout -b feature/your-feature-name
-```
-
-3. Make your changes and commit them:
+### Running Tests
 
 ```bash
-git commit -m "Add your detailed commit message here"
+composer test
 ```
 
-4. Push to your branch:
+### Code Style
 
 ```bash
-git push origin feature/your-feature-name
+composer format
 ```
 
-5. Open a pull request with a clear description of your changes.
+### Static Analysis
 
-Please ensure your code adheres to the project's coding standards and includes appropriate tests.
+```bash
+composer analyze
+```
 
-### Happy coding! 🚀
+## 🤝 Contributing
+
+We welcome contributions! Please see our Contributing Guide for details.
+
+1. Fork the repository
+2. Create your feature branch (git checkout -b feature/amazing-feature)
+3. Commit your changes (git commit -m 'Add amazing feature')
+4. Push to the branch (git push origin feature/amazing-feature)
+5. Open a Pull Request
+
+## 🔒 Security
+
+For security issues, please see our Security Policy.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 💬 Support
+
+- For SDK issues, open an issue
+- For API questions, contact ajuda@abacatepay.com
+- For urgent issues, contact our support team
+
+Made with ❤️ by AbacatePay Team
