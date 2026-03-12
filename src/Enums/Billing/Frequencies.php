@@ -15,4 +15,11 @@ enum Frequencies: string
      * Represents a billing that occurs only once.
      */
     case ONE_TIME = "ONE_TIME";
+
+    /**
+     * Multiple payments billing.
+     *
+    * Represents a billing that can be paid more than once.
+     */
+    case MULTIPLE_PAYMENTS = "MULTIPLE_PAYMENTS";
 }
